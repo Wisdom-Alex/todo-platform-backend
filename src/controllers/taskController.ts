@@ -8,6 +8,8 @@ export const getAllTasks = async (req: Request, res: Response): Promise<void> =>
     const tasks = await taskService.getAllTasks();
     res.json(tasks);
   } catch (error) {
+    console.error('Error creating task:', error);
+    res.status(500).json({ message: 'Server error' });
     handleErrorResponse(res, error);
   }
 };
